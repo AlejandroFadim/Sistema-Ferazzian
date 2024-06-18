@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styleCadastro.css">
+    <link rel="icon" href="assets/logo.png">]
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="stylesheet">
+    <title>Cadastro | Ferazzian</title>
+</head>
+
+<body>
+    <div class="Cadastro" id="tela_cadastro"> <!-- Divisória que envolve metade da tela -->
+        <div class="container_button_voltar_login">
+            <a href="Dashboard/dashboard.html">
+                <button class="button_voltar">Voltar</button> <!-- Botão que envia para a tela home -->
+            </a>
+        </div>
+        <div class="headerCadastro">
+            <h1>CADASTRAR USUÁRIOS</h1>
+        </div>
+        <div class="CenterCadastro">
+            <div class="container_input_Cadastro">
+                <p class="pCadastro">Nome</p>
+                <input class="input_Cadastro" type="text" id="input_nome_cadastro">
+
+                <p class="pCadastro">E-mail</p>
+                <input class="input_Cadastro" type="email" id="input_email_cadastro">
+
+                <p class="pCadastro">Senha</p>
+                <input class="input_Cadastro" type="password" id="input_senha_cadastro">
+
+                <p class="pCadastro">Confirmar Senha</p>
+                <input class="input_Cadastro" type="password" id="input_confirmar_senha_cadastro">
+
+                <p class="pCadastro">CPF</p>
+                <input class="input_Cadastro" id="input_cpf">
+
+                <p class="pCadastro">Tipo de usuário</p>
+                <select class="input_Cadastro" id="input_selecionar_tipo_cadastro">
+                    <option value="#">SELECIONE O TIPO DE USUÁRIO</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Funcionario">Funcionário</option>
+                </select>
+
+                <div class="container_button">
+                    <button class="button" onclick="cadastrar()">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        
+    </section>
+</body>
+</html>
+<script src="js/cadastro.js"></script>

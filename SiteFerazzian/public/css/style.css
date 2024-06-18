@@ -1,0 +1,357 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+nav {
+    height: 75px;
+    width: 100%;
+    background-color: #506C3B;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    transition: 0.4s;
+}
+
+nav a:hover {
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+.btnStyle {
+    background-color: #395D05;
+    height: 30px;
+    width: 90px;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+    font-size: 20px;
+}
+
+
+.btnStyle:hover {
+    background-color: white;
+    color: #395D05;
+    border: 1px solid #000;
+    transition: 0.4s;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.imgHome {
+    background-image: url('../assets/homeHeader.png');
+    height: 650px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+}
+
+.imgHome h1 {
+    padding-top: 100px;
+    font-size: 80px;
+    padding-left: 50px;
+
+}
+
+.imgHome p {
+    margin-left: 50px;
+
+    padding-top: 40px;
+
+    font-size: 38px;
+}
+
+.articleQuemSomos {
+    display: flex;
+    height: 650px;
+    background-color: #F5E5B9;
+}
+
+.articleQuemSomos h1 {
+    color: #395D05;
+}
+
+.articlefun {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.articleTextoFun {
+    color: #fff;
+    width: 50%;
+    margin-left: -650px;
+}
+
+.articleTextoFun h1 {
+    font-size: 70px;
+    margin-bottom: 40px;
+}
+
+.articleTextoFun p {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.articleTextoFun .btnStyle {
+    background-color: #395D05;
+    height: 50px;
+    width: 150px;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+    font-size: 20px;
+}
+
+.articleTextoFun .btnStyle:hover {
+    background-color: white;
+    color: #395D05;
+    border: 1px solid #000;
+    transition: 0.4s;
+}
+
+.articleTexto {
+    margin-left: 80px;
+}
+
+.articleTexto h1 {
+    font-size: 70px;
+    padding-bottom: 60px;
+    padding-top: 80px;
+}
+
+.articleTexto p {
+    font-size: 45px;
+    padding-bottom: 40px;
+}
+
+.articleTexto .btnStyle {
+    width: 225px;
+    height: 60px;
+    border-radius: 2px;
+    margin-left: 480px;
+    margin-top: 10%;
+}
+
+.articlefun {
+    background-image: url('../assets/campo.jpg');
+    height: 650px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.articleCalculadora {
+    display: flex;
+    align-items: center;
+    height: 750px;
+    background-color: #F5E5B9;
+}
+
+.articleCalculadoraTexto {
+    width: 60%;
+    height: 50%;
+}
+
+.articleCalculadoraImg {
+    width: 40%;
+    height: 100%;
+}
+
+.articleCalculadoraTexto h1 {
+    font-size: 70px;
+    color: #395D05;
+    margin-bottom: 40px;
+}
+
+.articleCalculadoraTexto p {
+    margin-bottom: 40px;
+    font-size: 36px;
+
+}
+
+.articleCalculadora .btnStyle {
+    margin-left: 600px;
+    width: 210px;
+    height: 50px;
+    border-radius: 2px;
+}
+
+.articleFeed {
+    background-color: #F5E5B9;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(106, 105, 105, 14));
+    height: 950px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.articleFeed .articleContainerFeed {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+footer {
+    height: 110px;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.0), rgba(106, 105, 105, 0.9)), url("../assets/homeHeader.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    object-fit: fit;
+    text-align: center;
+}
+
+footer a{
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #fff;
+}
+
+.footerPai {
+    border-top: solid 4px #fff;
+    color: #fff;
+    font-weight: 400;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+    font-size: 10px;
+}
+
+.footerTextoRigth {
+    margin-left: 50%;
+}
+
+.articleBoxFeed {
+    width: 400px;
+    height: 570px;
+    background-image: url('../assets/cardbackground.png');
+    background-repeat: no-repeat;
+    background-size: 150%;
+}
+
+.boxFilho {
+    border: solid 3px #fff;
+    height: 93%;
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#user2 {
+    background-image: url('../assets/user2.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-top: 60px;
+    border-radius: 100%;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 50px;
+}
+
+#user1 {
+    background-image: url('../assets/user1.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-top: 60px;
+    border-radius: 100%;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 50px;
+}
+
+#user3 {
+    background-image: url('../assets/user3.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-top: 60px;
+    border-radius: 100%;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 50px;
+}
+
+.BoxFilhoCardTexto {
+    width: 100%;
+    color: #fff;
+    font-size: 20px;
+}
+
+.BoxFilhoCardTexto h1 {
+    font-weight: 300;
+}
+
+.articleTextoFeed {
+    height: 300px;
+}
+
+.articleTextoFeed h1 {
+    font-size: 70px;
+    color: #395D05;
+    margin-bottom: 20px;
+}
+
+.articleTextoFeed h2 {
+    font-size: 70px;
+    color: #000000;
+    font-weight: lighter;
+    margin-bottom: 50px;
+}
+
+.parallax {
+    display: flex;
+    height: 400px;
+    background-image: url('../assets/imagemparallax.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    letter-spacing: 49px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-repeat: no-repeat;
+}
+
+.parallax p {
+    display: flex;
+    font-size: 90px;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-left: 5%;
+}

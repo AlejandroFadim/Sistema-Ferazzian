@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Ferazzian</title>
+    <script type="text/javascript" src="js/login.js"></script>
+    <link rel="stylesheet" href="css/styleLogin.css">
+    <link rel="icon" href="assets/logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="Cadastro" id="tela_cadastro"> <!-- Divisória que envolve metade da tela -->
+        <div class="container_button_voltar_login">
+            <a href="index.html">
+                <button class="button_voltar">Voltar</button> <!-- Botão que envia para a tela home -->
+            </a>
+        </div>
+
+        <div class="headerLogin">
+            <h1>LOGIN</h1>
+        </div>
+        <div class="CenterLogin">
+            <div class="container_input_Login">
+
+                <p class="pLogin">Email:</p>
+                <input class="input_Login" type="text" id="input_email_login">
+                <p class="pLogin">Senha:</p>
+                <input class="input_Login" type="password" id="input_senha_login">
+
+                <div class="container_button">
+                    <button class="button" onclick="Login()">Entrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

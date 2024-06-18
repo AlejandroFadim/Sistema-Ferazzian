@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="main.js" defer></script>
+  <script data-jsd-embedded data-key="5476b741-70cd-4068-85af-310b59ac509d"
+    data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+  <link rel="stylesheet" href="styleDashboard.css">
+  <link rel="icon" href="../assets/logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="stylesheet">
+  <title>Dashboard | Ferazzian</title>
+</head>
+
+<body>
+  <div class="botoes" id="div_botoes">
+    <a href="../index.html">
+      <button class="btnCadastro" onclick="sair()">Sair</button>
+    </a>
+    <a href="../cadastro.html" id="botao_Cadastrar" style="display: none;">
+      <button class="btnCadastro">Cadastro</button>
+    </a>
+  </div>
+  <div class="tela_hectare" id="tela_hectare">
+
+    <br>
+    <div class="header">
+      <h1>SELECIONE O HECTARE QUE DESEJA MONITORAR</h1>
+      <div class="linha_header"></div>
+    </div>
+    <div class="container_center" id="container_hectare">
+      <div class="caixa">
+        <div class="hectare" id="hectare1" onclick="hectare1()">
+          <h3>Hectare: 1</h3>
+          <p id="hectare1p"></p>
+          <h3 id="hectare1_h3"></h3>
+        </div>
+
+        <div class="hectare" id="hectare2" onclick="hectare2()">
+          <h3>Hectare: 2</h3>
+          <p id="hectare2p"></p>
+          <h3 id="hectare2_h3"></h3>
+        </div>
+
+        <div class="hectare" id="hectare3" onclick="hectare3()">
+          <h3>Hectare: 3</h3>
+          <p id="hectare3p"></p>
+          <h3 id="hectare3_h3"></h3>
+        </div>
+
+        <div class="hectare" id="hectare4" onclick="hectare4()">
+          <h3>Hectare: 4</h3>
+          <p id="hectare4p"></p>
+          <h3 id="hectare4_h3"></h3>
+        </div>
+
+        <div class="hectare" id="hectare5" onclick="hectare5()">
+          <h3>Hectare: 5</h3>
+          <p id="hectare5p"></p>
+          <h3 id="hectare5_h3"></h3>
+        </div>
+
+        <div class="hectare" id="hectare6" onclick="hectare6()">
+          <h3>Hectare: 6</h3>
+          <p id="hectare6p"></p>
+          <h3 id="hectare6_h3"></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tela_grafico" id="tela_grafico">
+    <div class="container_button_voltar">
+      <button class="button" onclick="Voltar()">Voltar</button>
+    </div>
+
+    <div class="container">
+      <div class="legInf">
+        <section class="informacao">
+          <div class="conteudoInf">
+            <span id="nomeFazenda"></span>
+            <select id="select_hectare" onchange="hectare_select()">
+              <option value="hectare 1">Hectare 1</option>
+              <option value="hectare 2">Hectare 2</option>
+              <option value="hectare 3">Hectare 3</option>
+              <option value="hectare 4">Hectare 4</option>
+              <option value="hectare 5">Hectare 5</option>
+              <option value="hectare 6">Hectare 6</option>
+            </select>
+            <span id="tipo_soja"></span>
+          </div>
+        </section>
+
+        <section class="legenda">
+          <span id="tempIdeal" style="font-size: 14px;"><b>Temperatura ideal:</b> Entre 20C° e 28C°</span>
+          <span id="umidIdeal"><b>Umidade ideal:</b> Abaixo de 80%</span>
+        </section>
+      </div>
+
+      <section class="dashboard" id="dashboard">
+        <div class="alinharGraficoKpi">
+          <div class="alinharKpi">
+            <div>
+              <div id="tempKpi" class="KPI">
+                <h2>Temperatura</h2><span id="temp"></span>
+              </div>
+              <div id="riscoKpi" class="KPI">
+                <h2>Risco</h2><span id="risco"></span>
+              </div>
+              <div id="umidKpi" class="KPI">
+                <h2>Umidade</h2><span id="umid"></span>
+              </div>
+            </div>
+          </div>
+          <div class="container_grafico">
+            <div class="grafico">
+              <canvas id="myChartCanvasTemp" style="height: 230px;"></canvas>
+            </div>
+            <div class="line"></div>
+            <div class="grafico">
+              <canvas id="myChartCanvasUmid" style="height: 230px;"></canvas>
+            </div>
+          </div>
+        </div>
+    </div>
+    </section>
+  </div>
+</body>
+
+</html>
+
+
+<script>
+  var viuAlerta = false;
+
+  obterDadosMacro();
+  function sair() {
+
+    sessionStorage.clear();
+
+  }
+  if (sessionStorage.TP_USUARIO == 'Administrador') {
+    botao_Cadastrar.style.display = 'block';
+  }
+
+  var idSensor;
+  var alerta;
+
+  function hectare_select() {
+    if (select_hectare.value == 'hectare 1') {
+      hectare1();
+    }
+    if (select_hectare.value == 'hectare 2') {
+      hectare2();
+    }
+    if (select_hectare.value == 'hectare 3') {
+      hectare3();
+    }
+    if (select_hectare.value == 'hectare 4') {
+      hectare4();
+    }
+    if (select_hectare.value == 'hectare 5') {
+      hectare5();
+    }
+    if (select_hectare.value == 'hectare 6') {
+      hectare6();
+    }
+
+  }
+
+  function hectare1() {
+    alerta = true;
+    div_botoes.style.display = 'none';
+    idSensor = 1;
+    tela_hectare.style.display = `none`;
+    tela_grafico.style.display = `unset`;
+    obterDadosGrafico();
+    viuAlerta = true;
+    select_hectare.value = 'hectare 1';
+    document.body.style.overflowY = 'hidden';
+  }
+
+  function hectare2() {
+    alerta = true;
+    div_botoes.style.display = 'none';
+    idSensor = 2;
+    tela_hectare.style.display = `none`;
+    tela_grafico.style.display = `unset`;
+    obterDadosGrafico();
+    viuAlerta = true;
+    select_hectare.value = 'hectare 2';
+    document.body.style.overflowY = 'hidden';
+
+  }
+
+  function hectare3() {
+    alerta = true;
+    div_botoes.style.display = 'none';
+    idSensor = 3;
+    tela_hectare.style.display = `none`;
+    tela_grafico.style.display = `unset`;
+    obterDadosGrafico();
+    viuAlerta = true;
+    select_hectare.value = 'hectare 3';
+    document.body.style.overflowY = 'hidden';
+  }
+
+  function hectare4() {
+    alerta = true;
+    div_botoes.style.display = 'none';
+    idSensor = 4;
+    tela_hectare.style.display = `none`;
+    tela_grafico.style.display = `unset`;
+    obterDadosGrafico();
+    viuAlerta = true;
+    select_hectare.value = 'hectare 4';
+    document.body.style.overflowY = 'hidden';
+  }
+
+  function hectare5() {
+    alerta = true;
+    div_botoes.style.display = 'none';
+    idSensor = 5;
+    tela_hectare.style.display = `none`;
+    tela_grafico.style.display = `unset`;
+    obterDadosGrafico();
+    viuAlerta = true;
+    select_hectare.value = 'hectare 5';
+    document.body.style.overflowY = 'hidden';
+  }
+
+  function hectare6() {
+    alerta = true;
+    div_botoes.style.display = 'none';
+    idSensor = 6;
+    tela_hectare.style.display = `none`;
+    tela_grafico.style.display = `unset`;
+    obterDadosGrafico();
+    viuAlerta = true;
+    select_hectare.value = 'hectare 6';
+    document.body.style.overflowY = 'hidden';
+  }
+
+  function Voltar() {
+    alerta = false;
+    div_botoes.style.display = 'flex';
+    tela_hectare.style.display = `unset`;
+    tela_grafico.style.display = `none`;
+    viuAlerta = false;
+    obterDadosMacro();
+  }
+
+  function obterDadosMacro() {
+    var lista_medio = [];
+    var lista_alto = [];
+    var lista_erro = [];
+
+    for (cont = 1; cont <= 6; cont++) {
+      (function (cont) {
+        fetch(`/medida/buscarPorHectare/${cont}`)
+          .then(function (resposta) {
+            var resumo = document.getElementById(`hectare${cont}p`);
+            var caixa = document.getElementById(`hectare${cont}`);
+            if (resposta.ok) {
+              resposta.json().then(function (dados1) {
+
+                var temperatura_atual = dados1[0]['sensorTemp'];
+                var umidade_atual = dados1[0]['sensorUmid'];
+                var temperatura_Maxima = dados1[0]['tempMaxima'];
+                var temperatura_Minima = dados1[0]['tempMinima'];
+                var umidade_Minima = dados1[0]['umidMinima'];
+
+                console.table(dados1);
+
+                if (temperatura_atual >= temperatura_Minima && temperatura_atual <= temperatura_Maxima && umidade_atual >= umidade_Minima) {
+                  resumo.innerHTML = `<b>Risco: ALTO</b>`;
+                  caixa.style.backgroundColor = 'red';
+                  lista_alto.push(cont);
+                }
+
+                else if (temperatura_atual >= temperatura_Minima && temperatura_atual <= temperatura_Maxima && umidade_atual < umidade_Minima || ((temperatura_atual < temperatura_Minima || temperatura_atual > temperatura_Maxima) && umidade_atual >= umidade_Minima)) {
+                  resumo.innerHTML = `<b>Risco: Médio</b>`;
+                  caixa.style.backgroundColor = 'orange';
+                  lista_medio.push(cont);
+                }
+
+                else if ((temperatura_atual < temperatura_Minima || temperatura_atual > temperatura_Maxima) && umidade_atual < umidade_Minima) {
+                  resumo.innerHTML = `<b>Risco: Baixo</b>`;
+                  caixa.style.backgroundColor = '#395D05';
+                }
+
+                if (lista_medio.length > 0 && lista_alto.length > 0) {
+                  if (!viuAlerta) {
+                    Swal.fire({
+                      position: "center",
+                      icon: "warning",
+                      html: `HECTARES ${lista_alto} COM RISCO <span style="color: red">ALTO</span> <br><br> HECTARES ${lista_medio} COM RISCO <span style="color: orange">MÉDIO</span>`,
+                      background: "#1D1D1D",
+                      color: "#FFF",
+                      showConfirmButton: true,
+
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        viuAlerta = true;
+                      }
+                    });
+                  }
+                }
+                else if (lista_medio.length > 0) {
+                  if (!viuAlerta) {
+                    Swal.fire({
+                      position: "center",
+                      icon: "warning",
+                      html: `HECTARES ${lista_medio} COM RISCO <span style="color: orange">MÉDIO</span>`,
+                      background: "#1D1D1D",
+                      color: "#FFF",
+                      showConfirmButton: true,
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        viuAlerta = true;
+                      };
+                    }
+                    )
+                  }
+                  else if (lista_alto.length > 0) {
+                    if (!viuAlerta) {
+                      Swal.fire({
+                        position: "center",
+                        icon: "warning",
+                        html: `HECTARES ${lista_alto} COM RISCO <span style="color: red">ALTO</span>`,
+                        background: "#1D1D1D",
+                        color: "#FFF",
+                        showConfirmButton: true,
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          viuAlerta = true;
+                        };
+                      }
+                      )
+                    }
+                  }
+                }
+              });
+            } else {
+              console.error('Nenhum dado encontrado no banco ou erro na API');
+              resumo.innerHTML = 'ERRO';
+              lista_erro.push(cont);
+
+              caixa.style.backgroundColor = '#1D1D1D';
+            }
+          })
+          .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+          });
+      }(cont))
+
+    }
+  }
+
+
+
+  function obterDadosGrafico() {
+    fetch(`/medida/buscarUltimasMedidas/${idSensor}`)
+      .then(function (resposta) {
+        if (resposta.ok) {
+          resposta.json().then(function (dados) {
+
+            verificacao(dados);
+            plotarGraficoTemperatura(dados);
+            plotarGraficoUmidade(dados);
+
+            nomeFazenda.innerHTML = 'Fazenda: ' + dados[0]['nomeFazenda'];
+            var tipo = dados[0]['tipoSoja'];
+            tipo_soja.innerHTML = tipo;
+          });
+        } else {
+          console.error('Nenhum dado encontrado no banco ou erro na API');
+        }
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
+
+
+  function plotarGraficoTemperatura(dados) {
+    const ctx = document.getElementById('myChartCanvasTemp');
+
+    if (Chart.getChart(ctx)) {
+      Chart.getChart(ctx).destroy();
+    }
+
+    // Criando estrutura para plotar gráfico - labels e data
+    let labels = [];
+
+    Chart.defaults.color = '#ffffff';
+    Chart.defaults.font.size = 15;
+    dados.reverse();
+
+    let chartData = {
+      labels: labels,
+      datasets: [{
+        label: 'Temperatura',
+        data: [],
+        borderColor: '#B0CDDA',
+        borderWidth: 2
+      },
+      {
+        label: 'Temperatura Mínima',
+        data: [],
+        borderColor: '#EE675C',
+        borderWidth: 2
+      },
+      {
+        label: 'Temperatura Máxima',
+        data: [],
+        borderColor: '#EE675C',
+        borderWidth: 2
+      },
+
+      ]
+    };
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+      type: 'line',
+      data: chartData,
+      options: {
+        animation: false,
+        scales: {
+          y: {
+            suggestedMax: 50,
+            beginAtZero: true,
+            ticks: {
+              stepSize: 5
+            }
+          }
+        }
+      }
+    };
+
+    // Adicionando gráfico criado em div na tela
+
+    for (i = 0; i < dados.length; i++) {
+      var registro = dados[i];
+      labels.push(registro.horaColeta);
+      chartData.datasets[0].data.push(registro.sensorTemp);
+      chartData.datasets[1].data.push(registro.tempMinima);
+      chartData.datasets[2].data.push(registro.tempMaxima);
+    }
+    let myChart = new Chart(
+      document.getElementById('myChartCanvasTemp'),
+      config
+    );
+  }
+
+  function plotarGraficoUmidade(dados) {
+    const ctx = document.getElementById('myChartCanvasUmid');
+
+    if (Chart.getChart(ctx)) {
+      Chart.getChart(ctx).destroy();
+    }
+
+    // Criando estrutura para plotar gráfico - labels e data
+    let labels = [];
+
+    Chart.defaults.color = '#ffffff';
+
+    let chartData = {
+      labels: labels,
+      datasets: [{
+        label: 'Umidade',
+        data: [],
+        borderColor: '#B0CDDA',
+        borderWidth: 2
+      },
+      {
+        label: 'Umidade Mínima',
+        data: [],
+        borderColor: '#EE675C',
+        borderWidth: 2
+      }]
+    };
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+      type: 'line',
+      data: chartData,
+      options: {
+        animation: false,
+        scales: {
+          y: {
+            suggestedMax: 100,
+            beginAtZero: true,
+            ticks: {
+              stepSize: 10
+            }
+          }
+        }
+      }
+    };
+
+    // Adicionando gráfico criado em div na tela
+    for (i = 0; i < dados.length; i++) {
+      var registro = dados[i];
+      labels.push(registro.horaColeta);
+      chartData.datasets[0].data.push(registro.sensorUmid);
+      chartData.datasets[1].data.push(registro.umidMinima);
+    }
+    let myChart = new Chart(
+      document.getElementById('myChartCanvasUmid'),
+      config
+    );
+  }
+
+  function verificacao(dados) {
+    var tamanho = dados.length;
+    var registro = dados[0];
+    var temperatura_atual = registro.sensorTemp;
+    var umidade_atual = registro.sensorUmid;
+    var temperatura_Maxima = registro.tempMaxima;
+    var temperatura_Minima = registro.tempMinima;
+    var umidade_Minima = registro.umidMinima;
+    tempIdeal.innerHTML = `<b>Temperatura ideal:</b> Fora de ${temperatura_Minima}°C e ${temperatura_Maxima}°C`;
+    umidIdeal.innerHTML = `<b>Umidade ideal:</b> Abaixo de ${umidade_Minima}%`;
+    console.table(dados);
+
+    if (temperatura_atual >= temperatura_Minima && temperatura_atual <= temperatura_Maxima && umidade_atual >= umidade_Minima) {
+      risco.innerHTML = `<b>ALTO</b>`;
+      riscoKpi.style = `background-color: red`;
+      temp.innerHTML = temperatura_atual + '°C';
+      tempKpi.style = `background-color: red`;
+      umid.innerHTML = umidade_atual + '%';
+      umidKpi.style = `background-color: red`;
+    }
+
+    if (temperatura_atual >= temperatura_Minima && temperatura_atual <= temperatura_Maxima && umidade_atual < umidade_Minima) {
+      risco.innerHTML = `<b>Médio</b>`;
+      riscoKpi.style = `background-color: orange`;
+      temp.innerHTML = temperatura_atual + '°C';
+      tempKpi.style = `background-color: red`;
+      umid.innerHTML = umidade_atual + '%';
+      umidKpi.style = `background-color: #395D05`;
+    }
+
+    if ((temperatura_atual < temperatura_Minima || temperatura_atual > temperatura_Maxima) && umidade_atual >= umidade_Minima) {
+      risco.innerHTML = `<b>Médio</b>`;
+      riscoKpi.style = `background-color: orange`;
+      temp.innerHTML = temperatura_atual + '°C';
+      tempKpi.style = `background-color: #395D05`;
+      umid.innerHTML = umidade_atual + '%';
+      umidKpi.style = `background-color: red`;
+    }
+
+    if ((temperatura_atual < temperatura_Minima || temperatura_atual > temperatura_Maxima) && umidade_atual < umidade_Minima) {
+      risco.innerHTML = `<b>Baixo</b>`;
+      riscoKpi.style = `background-color: #395D05`;
+      temp.innerHTML = temperatura_atual + '°C';
+      tempKpi.style = `background-color: #395D05`;
+      umid.innerHTML = umidade_atual + '%';
+      umidKpi.style = `background-color: #395D05`;
+    }
+  }
+
+
+
+  setInterval(() => {
+    obterDadosMacro(),
+      obterDadosGrafico();
+  }, 20000);
+</script>

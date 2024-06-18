@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador | Ferazzian</title>
+    <script type="text/javascript" src="js/scriptCalculadora.js"></script>
+    <link rel="stylesheet" href="css/styleCalculadora.css">
+    <link rel="icon" href="assets/logo.png">
+</head>
+
+<body>
+    <div class="container_button_voltar"> <a href="index.html">
+            <button class="button_voltar">Voltar</button></a>
+    </div>
+    <div class="header">
+        <h1>FAÇA UMA SIMULAÇÃO CONOSCO</h1>
+        <div class="linha_header"></div>
+    </div>
+    <br><br>
+    <div class="Center">
+        <div class="div1" id="div1"></div>
+        <div class="container_input">
+            Faturamento por hectare (R$): <input type="text" id="input_faturamento" class="input" r><br>
+            Tamanho da plantação (ha): <input type="number" id="input_num" class="input" required><br>
+            Perdas por hectare (%): <input type="text" id="input_perda" class="input"
+                placeholder="Utilizará média de mercado caso não preenchido">
+            <div class="container_button">
+                <button class="button" onclick="calcular()">SIMULE!</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
